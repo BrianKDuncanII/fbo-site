@@ -48,15 +48,10 @@ function togglePage(pageID) {
     }
 }
 
-tippy('#discordIcon', {
-    content: "FeralBound Discord",
+tippy('#discord-icon', {
+    content: "FBO Discord",
 });
 
-tippy('#patreonIcon', {
-    content: "FeralBound Patreon",
-});
-
-tippy('#zipArchiveButton', {
-    content: "This will open an external link to the game's Itch.io page.",
-    placement: 'bottom',
+tippy('#patreon-icon', {
+    content: "FBO Patreon",
 });

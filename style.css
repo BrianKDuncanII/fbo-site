@@ -1,89 +1,243 @@
-@font-face {
-    font-family: 'CustomFont'; /* Specify a name for your font */
-    src: url('resource/fonts/sybilla.ttf');
-    /* You can add additional font formats (e.g., woff, woff2) for better browser compatibility */
+/* =============================================
+   Font Imports
+   ============================================= */
+   @font-face {
+    font-family: 'CustomFont';
+    src: url('resource/fonts/sybilla.ttf') format('truetype');
+    font-display: swap;
   }
-
-@font-face {
-  font-family: 'InterUIRegular';
-  src: url('resource/fonts/Inter-Regular.ttf');
-}
-
+  
+  @font-face {
+    font-family: 'InterUIRegular';
+    src: url('resource/fonts/Inter-Regular.ttf') format('truetype');
+    font-display: swap;
+  }
+  
+  /* =============================================
+     Base Styles
+     ============================================= */
+  :root {
+    --primary-bg: #150d1d;
+    --accent-color: #c28191;
+    --accent-hover: #e5d9d9;
+    --text-shadow: 0 0 0.5em rgba(255, 255, 255, 0.41);
+    --footer-bg: #333;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    font-family: 'InterUIRegular', sans-serif !important; /* Use the custom font for the body text */
-    background-color: #150d1d !important;
+    font-family: 'InterUIRegular', sans-serif !important;
+    background-color: var(--primary-bg) !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
-
+  
+  main {
+    flex: 1;
+  }
+  
+  .spacer-fix {
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+  
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'CustomFont', sans-serif !important; /* Use the custom font for headings */
+    font-family: 'CustomFont', sans-serif !important;
   }
-
-  .carousel-item{
+  
+  a {
+    transition: all 0.3s ease;
+  }
+  
+  /* =============================================
+     Navigation Styles
+     ============================================= */
+  .navbar {
+    background-color: rgba(21, 13, 29, 0.95) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    height: 4em;
+  }
+  
+  .navbar-brand img {
+    max-height: 3em;
+    margin-left: -1em;
+    margin-right: -1em;
+    width: auto;
+    aspect-ratio: auto;
+  }
+  
+  .navbar-toggler {
+    background-color: rgba(194, 129, 145, 0.2);
+    border: 1px solid var(--accent-color);
+  }
+  
+  .navbar-collapse {
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  /* Only show background on smaller screens when collapsed */
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      background-color: rgba(21, 13, 29, 0.95);
+      margin-top: 0.5rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+  
+  .nav-link.active {
+    text-shadow: var(--text-shadow);
+  }
+  
+  .social-icons a {
+    text-decoration: none;
+  }
+  
+  i {
+    color: var(--accent-color);
+  }
+  
+  i:hover {
+    color: var(--accent-hover);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* =============================================
+     Hero Section Styles
+     ============================================= */
+  .hero-section {
+    height: calc(100vh - 4em - 60px); /* viewport height minus navbar and footer */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-item {
     filter: blur(3px);
   }
-
-  i {
-    color: #c28191;
-  }
-
-  i:hover {
-    color: #e5d9d9;
-  }
-
-  .active {
-    text-shadow: 0em 0em 0.5em #ffffff69;
-  }
-
-  footer {
-    position:absolute;
-    left: 0;
-    bottom: 1;
+  
+  .carousel-img {
+    object-fit: cover;
     width: 100%;
-    height: 60px; /* Set the height of your footer */
-    background-color: #333; /* Set the background color of your footer */
-    color: white; /* Set the text color of your footer */
-    text-align: center; /* Center the text within the footer */
-    line-height: 60px; /* Vertical centering for the text */
+    height: calc(100vh - 4em - 60px); /* match hero section height */
   }
-
+  
+  .banner-container {
+    background-color: var(--overlay-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90% !important;
+    max-width: 800px !important;
+  }
+  
+  .banner-image {
+    max-width: 80%;
+    width: auto;
+    height: auto;
+    pointer-events: none;
+  }
+  
+  .coming-soon-text h1 {
+    background-color: var(--overlay-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    display: inline-block;
+    pointer-events: none;
+  }
+  
+  /* =============================================
+     Footer Styles
+     ============================================= */
+  footer {
+    background-color: var(--footer-bg);
+    color: white;
+    text-align: center;
+    padding: 0.5rem 0;
+    width: 100%;
+    margin-top: 0;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .social-links a {
+    font-size: 1.5rem;
+    display: inline-block;
+  }
+  
+  /* =============================================
+     Animations
+     ============================================= */
   .fade-in-bck {
-    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-            animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in-bck 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   }
-
-  /* ----------------------------------------------
- * Generated by Animista on 2023-11-23 0:0:20
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation fade-in-bck
- * ----------------------------------------
- */
-@-webkit-keyframes fade-in-bck {
-  0% {
-    -webkit-transform: translateZ(80px);
-            transform: translateZ(80px);
-    opacity: 0;
+  
+  @keyframes fade-in-bck {
+    0% {
+      transform: translateZ(80px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateZ(0);
+      opacity: 1;
+    }
   }
-  100% {
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-    opacity: 1;
+  
+  /* =============================================
+     Responsive Styles
+     ============================================= */
+  @media (max-width: 992px) {
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
   }
-}
-@keyframes fade-in-bck {
-  0% {
-    -webkit-transform: translateZ(80px);
-            transform: translateZ(80px);
-    opacity: 0;
+  
+  @media (max-width: 768px) {
+    .navbar-brand img {
+      max-height: 2.5em;
+    }
+    
+    .banner-image {
+      max-width: 90%;
+    }
+    
+    .coming-soon-text h1 {
+      font-size: 1.5rem;
+    }
   }
-  100% {
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-    opacity: 1;
+  
+  @media (max-width: 576px) {
+    .navbar-brand img {
+      max-height: 2em;
+    }
+    
+    .banner-image {
+      max-width: 95%;
+    }
+    
+    .coming-soon-text h1 {
+      font-size: 1.25rem;
+      padding: 0.4rem 0.8rem;
+    }
+    
+    .banner-container {
+      padding: 1rem;
+    }
   }
-}
